@@ -9,6 +9,7 @@ import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 import { Box, Divider } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import OptionsMenu from "./OptionMenu";
 export default function SliderCard() {
   return (
     <>
@@ -36,7 +37,7 @@ export default function SliderCard() {
           <Typography>Riley Carter</Typography>
           <Typography variant="body2">riley@gmail.com</Typography>
         </Stack>
-        <MoreVertIcon className="cursor-pointer hover:border-dashed"/>
+       <OptionsMenu/>
       </Stack>
     </>
   );
