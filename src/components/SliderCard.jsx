@@ -32,7 +32,7 @@ export default function SliderCard() {
       </Card>
       <Divider />
       <Stack className="p-3" direction="row" spacing={2} alignItems={"center"}>
-        <Avatar alt="Remy Sharp" src="./src/assets/person.jpg" />
+        <Avatar alt="Remy Sharp" src="/src/assets/person.jpg" />
         <Stack>
           <Typography>Riley Carter</Typography>
           <Typography variant="body2">riley@gmail.com</Typography>
