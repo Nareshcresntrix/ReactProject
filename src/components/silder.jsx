@@ -24,11 +24,11 @@ import SliderCard from "./SliderCard";
 const drawerWidth = 240;
 export default function Silder() {
   return (
-    <div>
+    <div className="hidden lg:block">
       <Box sx={{ display: "flex" }}>
         <Drawer
           sx={{
-            display: { xs: "none", md: "block" },
+            // display: { xs: "none",md: "block" },
             width: drawerWidth,
             flexShrink: 0,
           }}
@@ -36,8 +36,8 @@ export default function Silder() {
           anchor="left"
         >
           <SelectContent />
-          <MenuContent/>
-          <SliderCard/>
+          <MenuContent />
+          <SliderCard />
         </Drawer>
       </Box>
     </div>

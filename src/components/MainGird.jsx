@@ -3,25 +3,20 @@ import Analytics from "./Analytics";
 import Session from "./Session";
 import PageViewsBarChart from "./ViewPagestatic";
 
-
 export default function MainGird() {
   return (
     <>
-      <div className="my-5 ">
+      <div className="my-3 ">
         <Analytics />
       </div>
-      <div className="flex  justify-between">
-        <div className="w-[49%]">
-            <Session/>
+      <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 justify-between gap-5">
+        <div>
+          <Session />
         </div>
-        <div className="w-[49%]">
-           <PageViewsBarChart/>
+        <div>
+          <PageViewsBarChart />
         </div>
       </div>
     </>
   );
 }
-
-
-
-
