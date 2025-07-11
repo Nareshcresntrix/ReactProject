@@ -15,7 +15,7 @@ export default function AppNavBar() {
   const toggleDrawer = () => setOpen(!open);
   return (
     <>
-      <div className="block lg:hidden">
+      <div className="block lg:hidden ">
         <Box sx={{ display: "flex" }}>
           <Drawer
             anchor="right"
@@ -38,9 +38,9 @@ export default function AppNavBar() {
       </div>
 
       <div className="block md:hidden">
-        <Divider />
+        {/* <Divider /> */}
       </div>
-      <nav className="block  lg:hidden my-3">
+      <nav className="block fixed top-0 left-0 right-0 bg-white z-10  rounded  lg:hidden !m-0 sm:m-0 p-3 my-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <DashboardIcon
@@ -67,7 +67,7 @@ export default function AppNavBar() {
         </div>
       </nav>
       <div className="block md:hidden">
-        <Divider />
+        {/* <Divider /> */}
       </div>
       <h1 className="text-2xl font-semibold my-2 block md:hidden ">Overview</h1>
     </>

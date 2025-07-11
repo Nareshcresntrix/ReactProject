@@ -1,73 +1,102 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import { styled, alpha } from "@mui/material/styles";
-import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
-import { TreeItem, treeItemClasses } from "@mui/x-tree-view/TreeItem";
+import React, { useState } from 'react';
+import { useSpring, animated } from '@react-spring/web';
 
-const CustomTreeItem = styled(TreeItem)(({ theme }) => ({
-  color: theme.palette.grey[200],
-  [`& .${treeItemClasses.content}`]: {
-    borderRadius: theme.spacing(0.5),
-    padding: theme.spacing(0.5, 1),
-    margin: theme.spacing(0.2, 0),
-    [`& .${treeItemClasses.label}`]: {
-      fontSize: "0.8rem",
-      fontWeight: 500,
-    },
+const treeData = [
+  {
+    id: '1',
+    label: 'Website',
+    children: [
+      { id: '1.1', label: 'Home', color: 'green' },
+      { id: '1.2', label: 'Pricing', color: 'green' },
+      { id: '1.3', label: 'About us', color: 'green' },
+      {
+        id: '1.4',
+        label: 'Blog',
+        children: [
+          { id: '1.4.1', label: 'Announcements', color: 'blue' },
+          { id: '1.4.2', label: 'April lookahead', color: 'blue' },
+          { id: '1.4.3', label: "What's new", color: 'blue' },
+          { id: '1.4.4', label: 'Meet the team', color: 'blue' },
+        ],
+      },
+    ],
   },
-  [`& .${treeItemClasses.iconContainer}`]: {
-    borderRadius: "50%",
-    backgroundColor: theme.palette.primary.dark,
-    padding: theme.spacing(0, 1.2),
-    ...theme.applyStyles("light", {
-      backgroundColor: alpha(theme.palette.primary.main, 0.25),
-    }),
-    ...theme.applyStyles("dark", {
-      color: theme.palette.primary.contrastText,
-    }),
+  {
+    id: '2',
+    label: 'Store',
+    children: [
+      { id: '2.1', label: 'All products', color: 'green' },
+      {
+        id: '2.2',
+        label: 'Categories',
+        children: [
+          { id: '2.2.1', label: 'Gadgets', color: 'blue' },
+          { id: '2.2.2', label: 'Phones', color: 'blue' },
+          { id: '2.2.3', label: 'Wearables', color: 'blue' },
+        ],
+      },
+      { id: '2.3', label: 'Bestsellers', color: 'green' },
+      { id: '2.4', label: 'Sales', color: 'green' },
+    ],
   },
-  [`& .${treeItemClasses.groupTransition}`]: {
-    marginLeft: 15,
-    paddingLeft: 18,
-    borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
-  },
-  ...theme.applyStyles("light", {
-    color: theme.palette.grey[800],
-  }),
-}));
+  { id: '4', label: 'Contact', color: 'blue' },
+  { id: '5', label: 'Help', color: 'blue' },
+];
+
+function Dot({ color }) {
+  const className =
+    color === 'green'
+      ? 'bg-green-500'
+      : color === 'blue'
+      ? 'bg-blue-500'
+      : 'bg-gray-400';
+  return <span className={`w-2 h-2 rounded-full mr-2 ${className}`}></span>;
+}
+
+function TreeNode({ node }) {
+  const [open, setOpen] = useState(false);
+  const hasChildren = node.children && node.children.length > 0;
+
+  const animation = useSpring({
+    opacity: open ? 1 : 0,
+    height: open ? 'auto' : 0,
+    overflow: 'hidden',
+    config: { tension: 240, friction: 22 },
+  });
+
+  return (
+    <div className="pl-4">
+      <div
+        className="flex items-center cursor-pointer py-1 hover:bg-gray-100 rounded-sm"
+        onClick={() => hasChildren && setOpen(!open)}
+      >
+        {hasChildren && (
+          <span className="mr-2 text-xs text-gray-500">{open ? '▼' : '➤'}</span>
+        )}
+        {node.color && <Dot color={node.color} />}
+        <span className="text-sm text-gray-800">{node.label}</span>
+      </div>
+
+      {hasChildren && (
+        <animated.div style={animation}>
+          <div className="ml-4 border-l border-gray-200 pl-2">
+            {node.children.map(child => (
+              <TreeNode key={child.id} node={child} />
+            ))}
+          </div>
+        </animated.div>
+      )}
+    </div>
+  );
+}
 
 export default function TreeView() {
   return (
-    <Box sx={{ minHeight: 352, minWidth: 250 }}>
-      <SimpleTreeView defaultExpandedItems={["grid"]}>
-        <CustomTreeItem itemId="grid" label="Data Grid">
-          <CustomTreeItem itemId="grid-community" label="@mui/x-data-grid" />
-          <CustomTreeItem itemId="grid-pro" label="@mui/x-data-grid-pro" />
-          <CustomTreeItem
-            itemId="grid-premium"
-            label="@mui/x-data-grid-premium"
-          />
-        </CustomTreeItem>
-        <CustomTreeItem itemId="pickers" label="Date and Time Pickers">
-          <CustomTreeItem
-            itemId="pickers-community"
-            label="@mui/x-date-pickers"
-          />
-          <CustomTreeItem
-            itemId="pickers-pro"
-            label="@mui/x-date-pickers-pro"
-          />
-        </CustomTreeItem>
-        <CustomTreeItem itemId="charts" label="Charts">
-          <CustomTreeItem itemId="charts-community" label="@mui/x-charts" />
-        </CustomTreeItem>
-        <CustomTreeItem itemId="tree-view" label="Tree View">
-          <CustomTreeItem
-            itemId="tree-view-community"
-            label="@mui/x-tree-view"
-          />
-        </CustomTreeItem>
-      </SimpleTreeView>
-    </Box>
+    <div className="w-full sm:w-full md:w-full md:h-[610px] lg:h-[610px] xl:h-auto  p-4 bg-white border rounded shadow-sm">
+      <h2 className="text-lg font-semibold mb-3">Product Tree</h2>
+      {treeData.map(item => (
+        <TreeNode key={item.id} node={item} />
+      ))}
+    </div>
   );
 }

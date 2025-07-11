@@ -30,6 +30,22 @@ const columns = [
     width: 160,
     valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
   },
+  {
+    field: "fullName",
+    headerName: "Full name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    width: 160,
+    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+  },
+  {
+    field: "fullName",
+    headerName: "Full name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    width: 160,
+    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+  },
 ];
 
 const rows = [
@@ -42,21 +58,37 @@ const rows = [
   { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
   { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 10, lastName: "Leonard", firstName: "Harvey", age: 65 },
+  { id: 11, lastName: "Roland", firstName: "Harvey", age: 65 },
+  { id: 12, lastName: "Clementine", firstName: "Harvey", age: 65 },
+  { id: 13, lastName: "Rsoxie", firstName: "Harvey", age: 65 },
+  { id: 14, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 15, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 16, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 17, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 18, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 19, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 20, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 21, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 22, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 23, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 24, lastName: "Roxie", firstName: "Harvey", age: 65 },
+  { id: 25, lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
 export default function DataGrids() {
   return (
-    <div>
+    <div className="xl:h-[800px]">
       <DataGrid
         rows={rows}
         columns={columns}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 10,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[ 10, 20]}
         checkboxSelection
         disableRowSelectionOnClick
       />

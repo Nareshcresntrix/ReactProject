@@ -19,6 +19,7 @@
     "@mui/x-data-grid": "^8.7.0",
     "@mui/x-date-pickers": "^8.7.0",
     "@mui/x-tree-view": "^8.7.0",
+    "@react-spring/web": "^10.0.1",
     "@tailwindcss/vite": "^4.1.11",
     "date-fns": "^4.1.0",
     "react": "^19.1.0",

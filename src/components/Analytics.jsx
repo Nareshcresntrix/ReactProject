@@ -8,20 +8,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import InsightsRoundedIcon from '@mui/icons-material/InsightsRounded';
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import InsightsRoundedIcon from "@mui/icons-material/InsightsRounded";
+import { useTheme } from "@mui/material/styles";
+import { areaElementClasses } from "@mui/x-charts/LineChart";
+
 export default function Analytics() {
-  //   const [showHighlight, setShowHighlight] = useState(true);
-  //   const [showTooltip, setShowTooltip] = useState(true);
-
-  //   const handleHighlightChange = (event) => {
-  //     setShowHighlight(event.target.checked);
-  //   };
-
-  //   const handleTooltipChange = (event) => {
-  //     setShowTooltip(event.target.checked);
-  //   };
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
       <div className="h-[300px]">
@@ -29,20 +21,35 @@ export default function Analytics() {
           <CardContent>
             <h1 className="text-2xl mb-2">Users</h1>
             <div className="flex justify-between mb-1">
-              <h2 className="text-3xl font-medium ">14K</h2>
-              <span className="inline-flex items-center rounded-4xl outline-1 h-5 bg-green-100 px-2  text-xs font-medium text-green-700 ring-1 ring-green-600/20 ">
+              <h2 className="text-3xl font-medium">14K</h2>
+              <span className="inline-flex items-center rounded-4xl outline-1 h-5 bg-green-100 px-2 text-xs font-medium text-green-700 ring-1 ring-green-600/20">
                 +25%
               </span>
             </div>
             <span className="text-gray-500 text-xs tracking-widest mb-2">
               Last 30 days
             </span>
+
             <SparkLineChart
-              data={[1, 4, 2, 5, 7, 2, 4, 6]}
+              area
+              data={[
+                500, 400, 510, 530, 520, 600, 530, 520, 510, 730, 520, 510, 530,
+                620, 510, 530, 520, 410, 530, 520, 610, 530, 520, 610, 530, 420,
+                453, 564, 575,
+              ]}
+              color={"green"}
+              sx={{
+                [`& .${areaElementClasses.root}`]: {
+                  fillOpacity: 0.2,
+                },
+              }}
               xAxis={{
                 scaleType: "time",
                 data: [
-                  new Date(2022, 3, 4), // April 4
+                  new Date(2022, 3, 1),
+                  new Date(2022, 3, 2),
+                  new Date(2022, 3, 3),
+                  new Date(2022, 3, 4),
                   new Date(2022, 3, 5),
                   new Date(2022, 3, 6),
                   new Date(2022, 3, 7),
@@ -50,6 +57,25 @@ export default function Analytics() {
                   new Date(2022, 3, 9),
                   new Date(2022, 3, 10),
                   new Date(2022, 3, 11),
+                  new Date(2022, 3, 12),
+                  new Date(2022, 3, 13),
+                  new Date(2022, 3, 14),
+                  new Date(2022, 3, 15),
+                  new Date(2022, 3, 16),
+                  new Date(2022, 3, 17),
+                  new Date(2022, 3, 18),
+                  new Date(2022, 3, 19),
+                  new Date(2022, 3, 20),
+                  new Date(2022, 3, 21),
+                  new Date(2022, 3, 22),
+                  new Date(2022, 3, 23),
+                  new Date(2022, 3, 24),
+                  new Date(2022, 3, 25),
+                  new Date(2022, 3, 26),
+                  new Date(2022, 3, 27),
+                  new Date(2022, 3, 28),
+                  new Date(2022, 3, 29),
+                  new Date(2022, 3, 30),
                 ],
                 valueFormatter: (value) =>
                   value.toLocaleDateString("en-US", {
@@ -64,26 +90,40 @@ export default function Analytics() {
           </CardContent>
         </Card>
       </div>
+
       <div className="h-[300px]">
         <Card variant="outlined">
           <CardContent>
-            <h1 className="text-2xl mb-2">Users</h1>
+            <h1 className="text-2xl mb-2">Conversions</h1>
             <div className="flex justify-between mb-1">
-              <h2 className="text-3xl font-medium ">14K</h2>
-              <span className="inline-flex items-center rounded-4xl outline-1 h-5 bg-green-100 px-2  text-xs font-medium text-green-700 ring-1 ring-green-600/20 ">
-                +25%
+              <h2 className="text-3xl font-medium ">325</h2>
+              <span className="inline-flex items-center rounded-4xl outline-1 h-5 bg-red-100 px-2  text-xs font-medium text-red-700 ring-1 ring-red-600/20 ">
+                -25%
               </span>
             </div>
             <span className="text-gray-500 text-xs tracking-widest mb-2">
               Last 30 days
             </span>
             <SparkLineChart
-              data={[1, 4, 2, 5, 7, 2, 4, 6]}
+              area
+              data={[
+                1640, 1250, 970, 1130, 1050, 900, 720, 1080, 900, 450, 920, 820,
+                840, 600, 820, 780, 800, 760, 380, 740, 660, 620, 840, 500, 520,
+                560, 580, 600, 620, 640,
+              ]}
               color={"red"}
+              sx={{
+                [`& .${areaElementClasses.root}`]: {
+                  fillOpacity: 0.2,
+                },
+              }}
               xAxis={{
                 scaleType: "time",
                 data: [
-                  new Date(2022, 3, 4), // April 4
+                  new Date(2022, 3, 1),
+                  new Date(2022, 3, 2),
+                  new Date(2022, 3, 3),
+                  new Date(2022, 3, 4),
                   new Date(2022, 3, 5),
                   new Date(2022, 3, 6),
                   new Date(2022, 3, 7),
@@ -91,6 +131,25 @@ export default function Analytics() {
                   new Date(2022, 3, 9),
                   new Date(2022, 3, 10),
                   new Date(2022, 3, 11),
+                  new Date(2022, 3, 12),
+                  new Date(2022, 3, 13),
+                  new Date(2022, 3, 14),
+                  new Date(2022, 3, 15),
+                  new Date(2022, 3, 16),
+                  new Date(2022, 3, 17),
+                  new Date(2022, 3, 18),
+                  new Date(2022, 3, 19),
+                  new Date(2022, 3, 20),
+                  new Date(2022, 3, 21),
+                  new Date(2022, 3, 22),
+                  new Date(2022, 3, 23),
+                  new Date(2022, 3, 24),
+                  new Date(2022, 3, 25),
+                  new Date(2022, 3, 26),
+                  new Date(2022, 3, 27),
+                  new Date(2022, 3, 28),
+                  new Date(2022, 3, 29),
+                  new Date(2022, 3, 30),
                 ],
                 valueFormatter: (value) =>
                   value.toLocaleDateString("en-US", {
@@ -99,8 +158,8 @@ export default function Analytics() {
                   }),
               }}
               height={100}
-              showTooltip
               showHighlight
+              showTooltip
             />
           </CardContent>
         </Card>
@@ -108,23 +167,36 @@ export default function Analytics() {
       <div className="h-[300px]">
         <Card variant="outlined">
           <CardContent>
-            <h1 className="text-2xl mb-2">Users</h1>
+            <h1 className="text-2xl mb-2">Event Count</h1>
             <div className="flex justify-between mb-1">
-              <h2 className="text-3xl font-medium ">14K</h2>
-              <span className="inline-flex items-center rounded-4xl outline-1 h-5 bg-green-100 px-2  text-xs font-medium text-green-700 ring-1 ring-green-600/20 ">
-                +25%
+              <h2 className="text-3xl font-medium ">200K</h2>
+              <span className="inline-flex items-center rounded-4xl outline-1 h-5 bg-gray-100 px-2  text-xs font-medium text-gray-700 ring-1 ring-gray-600/20 ">
+                +5%
               </span>
             </div>
             <span className="text-gray-500 text-xs tracking-widest mb-2">
               Last 30 days
             </span>
             <SparkLineChart
-              data={[1, 4, 2, 5, 7, 2, 4, 6]}
+            area
+              data={[
+                200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320,
+                360, 340, 380, 360, 400, 380, 420, 400, 640, 340, 460, 440, 480,
+                389, 390,
+              ]}
               color={"grey"}
+              sx={{
+                [`& .${areaElementClasses.root}`]: {
+                  fillOpacity: 0.2,
+                },
+              }}
               xAxis={{
                 scaleType: "time",
                 data: [
-                  new Date(2022, 3, 4), // April 4
+                  new Date(2022, 3, 1), // April 4
+                  new Date(2022, 3, 2),
+                  new Date(2022, 3, 3),
+                  new Date(2022, 3, 4),
                   new Date(2022, 3, 5),
                   new Date(2022, 3, 6),
                   new Date(2022, 3, 7),
@@ -132,6 +204,25 @@ export default function Analytics() {
                   new Date(2022, 3, 9),
                   new Date(2022, 3, 10),
                   new Date(2022, 3, 11),
+                  new Date(2022, 3, 12),
+                  new Date(2022, 3, 13),
+                  new Date(2022, 3, 14),
+                  new Date(2022, 3, 15),
+                  new Date(2022, 3, 16),
+                  new Date(2022, 3, 17),
+                  new Date(2022, 3, 18),
+                  new Date(2022, 3, 19),
+                  new Date(2022, 3, 20),
+                  new Date(2022, 3, 21),
+                  new Date(2022, 3, 22),
+                  new Date(2022, 3, 23),
+                  new Date(2022, 3, 24),
+                  new Date(2022, 3, 25),
+                  new Date(2022, 3, 26),
+                  new Date(2022, 3, 27),
+                  new Date(2022, 3, 28),
+                  new Date(2022, 3, 29),
+                  new Date(2022, 3, 30),
                 ],
                 valueFormatter: (value) =>
                   value.toLocaleDateString("en-US", {
@@ -147,9 +238,9 @@ export default function Analytics() {
         </Card>
       </div>
       <div className="h-[300px] ">
-        <Card variant="outlined" sx={{height: "82%" }}>
+        <Card variant="outlined" sx={{ height: "82%" }}>
           <CardContent>
-            <InsightsRoundedIcon fontSize="large" sx={{mb: 1}}/>
+            <InsightsRoundedIcon fontSize="large" sx={{ mb: 1 }} />
             <Typography
               component="h2"
               variant="subtitle2"
@@ -168,6 +259,5 @@ export default function Analytics() {
         </Card>
       </div>
     </div>
-  
   );
 }
