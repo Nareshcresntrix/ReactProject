@@ -17,16 +17,19 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import SettingsIcon from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Info";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
 
 function MenuContent() {
+  const routes1=["/","/analytics","/clients","/tasks"]
+  const routes2=["/settings","/about","/feedback"]
   return (
       <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
         <List>
           {["Home", "Analytics", "Clients", "Tasks"].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to={routes1[index]}>
                 <ListItemIcon>
                   {index === 0 ? (
                     <HomeIcon />
@@ -43,14 +46,11 @@ function MenuContent() {
             </ListItem>
           ))}
         </List>
-        {/* <Divider /> */}
-        {/* <Toolbar />
-        <Toolbar />
-        <Toolbar /> */}
+        
         <List>
           {["Settings", "About", "Feedback"].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to={routes2[index]}>
                 <ListItemIcon>
                   {index === 0 ? (
                     <SettingsIcon />
